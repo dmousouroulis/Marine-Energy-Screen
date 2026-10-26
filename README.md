@@ -100,7 +100,7 @@ A workspace on Fabric, Premium or Premium Per User capacity can connect directly
 | Light ends & gas | Gasoline NYH, Gasoline USGC, Propane Mt Belvieu, Henry Hub | `EER_EPMRU_PF4_Y35NY_DPG`, `EER_EPMRU_PF4_RGC_DPG`, `EER_EPLLPA_PF4_Y44MB_DPG`, `RNGWHHD` |
 | Calculated | Brent–WTI spread; ULSD NYH, ULSD USGC, Jet USGC and Gasoline NYH cracks vs Brent | derived per day in Power Query |
 
-- Liquids are in $/bbl: EIA publishes products in $/gal and the query multiplies by 42. Henry Hub is in $/MMBtu.
+- Liquids are in \$/bbl: EIA publishes products in \$/gal and the query multiplies by 42. Henry Hub is in \$/MMBtu.
 - Spreads and cracks show dollar changes only; percentage changes are not meaningful for them.
 - Change is against the previous published day; 1M is against the last price at least 30 days earlier.
 
@@ -128,7 +128,7 @@ A workspace on Fabric, Premium or Premium Per User capacity can connect directly
 
 | Step | Where |
 |---|---|
-| Fetch daily spot prices from EIA API v2, page through results, convert $/gal to $/bbl | Power Query: `Prices` table |
+| Fetch daily spot prices from EIA API v2, page through results, convert \$/gal to \$/bbl | Power Query: `Prices` table |
 | Calculate spreads and cracks per day (product minus Brent) | Power Query: `Prices` table |
 | Instrument names, groups, units and display order | Power Query: `Series` table |
 | Last price, changes, 52-week range, chart windows | DAX measures: `_Measures` table |
