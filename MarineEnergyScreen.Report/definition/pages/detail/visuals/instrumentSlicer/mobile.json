@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.5.0/schema.json",
+  "position": {
+    "x": 4,
+    "y": 546,
+    "z": 18000,
+    "height": 226,
+    "width": 312,
+    "tabOrder": 18000
+  },
+  "objects": {
+    "layout": [
+      {
+        "properties": {
+          "rowCount": {
+            "expr": {
+              "Literal": {
+                "Value": "8L"
+              }
+            }
+          },
+          "columnCount": {
+            "expr": {
+              "Literal": {
+                "Value": "2L"
+              }
+            }
+          },
+          "cellPadding": {
+            "expr": {
+              "Literal": {
+                "Value": "3L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

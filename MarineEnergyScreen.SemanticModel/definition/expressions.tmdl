@@ -1,0 +1,11 @@
+/// Your EIA Open Data API key (set by the deploy script or under Settings > Parameters)
+expression EiaApiKey = "PASTE_YOUR_EIA_KEY" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 53eee9a0-b0ff-43ed-b848-471e8394f7c2
+
+	annotation PBI_ResultType = Text
+
+/// Days of history to request from the EIA API (default 730 = 2 years)
+expression HistoryDays = 730 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=true]
+	lineageTag: 8a9af5ef-b713-4116-bcaf-63ae3012e36c
+
+	annotation PBI_ResultType = Number

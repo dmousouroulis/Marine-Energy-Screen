@@ -1,0 +1,225 @@
+table _Measures
+	lineageTag: b1bffc26-4eec-499b-8aae-228dc9a8c8fd
+
+	/// Latest published price for the instrument in the current filter context
+	measure Price =
+			VAR _d = MAX ( Prices[Date] )
+			RETURN
+			    IF ( HASONEVALUE ( Series[SeriesId] ), CALCULATE ( SUM ( Prices[Value] ), Prices[Date] = _d ) )
+		formatString: #,0.00;−#,0.00
+		displayFolder: Screen
+		lineageTag: 545e34a6-a3cf-4b23-9bc1-28288842be4b
+
+	/// Price on the previous published day
+	measure 'Previous Price' =
+			VAR _d = MAX ( Prices[Date] )
+			VAR _prev = CALCULATE ( MAX ( Prices[Date] ), Prices[Date] < _d )
+			RETURN
+			    IF (
+			        HASONEVALUE ( Series[SeriesId] ) && NOT ISBLANK ( _prev ),
+			        CALCULATE ( SUM ( Prices[Value] ), Prices[Date] = _prev )
+			    )
+		formatString: #,0.00;−#,0.00
+		displayFolder: Screen
+		lineageTag: 8995313c-6107-400a-ad90-5ae7c6a47e50
+
+	measure Change =
+			VAR _p = [Price]
+			VAR _q = [Previous Price]
+			RETURN
+			    IF ( NOT ISBLANK ( _p ) && NOT ISBLANK ( _q ), _p - _q )
+		formatString: +#,0.00;−#,0.00;0.00
+		displayFolder: Screen
+		lineageTag: 5085642a-258c-4322-ad90-5cbbb9a523fb
+
+	measure 'Change %' =
+			IF (
+			    SELECTEDVALUE ( Series[Kind] ) <> "Spread",
+			    DIVIDE ( [Change], ABS ( [Previous Price] ) )
+			)
+		formatString: +0.0%;−0.0%;0.0%
+		displayFolder: Screen
+		lineageTag: 4a1eec61-0f58-47e0-986c-549cf1a029d8
+
+	/// Font colour for Change and Change %
+	measure 'Change Color' =
+			VAR _c = [Change]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( _c ), "#8094A8", _c > 0, "#3DCB95", _c < 0, "#FF7A7A", "#8094A8" )
+		displayFolder: Formatting
+		lineageTag: 83e89ad5-b220-4b8f-b9e8-c0d703266537
+
+	/// Last published price at least 30 days before the latest price
+	measure 'Price 1M Ago' =
+			VAR _d = MAX ( Prices[Date] )
+			VAR _ref = CALCULATE ( MAX ( Prices[Date] ), Prices[Date] <= _d - 30 )
+			RETURN
+			    IF (
+			        HASONEVALUE ( Series[SeriesId] ) && NOT ISBLANK ( _ref ),
+			        CALCULATE ( SUM ( Prices[Value] ), Prices[Date] = _ref )
+			    )
+		formatString: #,0.00;−#,0.00
+		displayFolder: Screen
+		lineageTag: f72ebbcd-3d58-4520-8b31-3ea399f26f0b
+
+	/// Change vs the last price at least 30 days earlier
+	measure 'Change 1M' =
+			VAR _p = [Price]
+			VAR _r = [Price 1M Ago]
+			RETURN
+			    IF ( NOT ISBLANK ( _p ) && NOT ISBLANK ( _r ), _p - _r )
+		formatString: +#,0.00;−#,0.00;0.00
+		displayFolder: Screen
+		lineageTag: fc9cddbe-cb15-4e68-af99-57c039f62ed5
+
+	/// Percent change is left blank for spreads and cracks
+	measure 'Change 1M %' =
+			IF (
+			    SELECTEDVALUE ( Series[Kind] ) <> "Spread",
+			    DIVIDE ( [Change 1M], ABS ( [Price 1M Ago] ) )
+			)
+		formatString: +0.0%;−0.0%;0.0%
+		displayFolder: Screen
+		lineageTag: 84275fe2-bf5e-419c-89af-a6fb0e22a019
+
+	measure 'Change 1M Color' =
+			VAR _c = [Change 1M]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( _c ), "#8094A8", _c > 0, "#3DCB95", _c < 0, "#FF7A7A", "#8094A8" )
+		displayFolder: Formatting
+		lineageTag: cc714373-a325-4462-9015-de23156d591d
+
+	measure '52W High' =
+			VAR _d = MAX ( Prices[Date] )
+			RETURN
+			    IF (
+			        HASONEVALUE ( Series[SeriesId] ),
+			        CALCULATE ( MAX ( Prices[Value] ), Prices[Date] > _d - 365, Prices[Date] <= _d )
+			    )
+		formatString: #,0.00;−#,0.00
+		displayFolder: Screen
+		lineageTag: de79d9fe-4286-4c6c-9363-dcc4cde88024
+
+	measure '52W Low' =
+			VAR _d = MAX ( Prices[Date] )
+			RETURN
+			    IF (
+			        HASONEVALUE ( Series[SeriesId] ),
+			        CALCULATE ( MIN ( Prices[Value] ), Prices[Date] > _d - 365, Prices[Date] <= _d )
+			    )
+		formatString: #,0.00;−#,0.00
+		displayFolder: Screen
+		lineageTag: 857f68fd-30ca-4688-8af2-27d6aace5922
+
+	/// Date of the latest published price for the instrument
+	measure 'As Of' = IF ( HASONEVALUE ( Series[SeriesId] ), MAX ( Prices[Date] ) )
+		formatString: d mmm yyyy
+		displayFolder: Screen
+		lineageTag: a34ed86f-cabe-4553-af01-dae9bc883a58
+
+	measure 'Daily Price' = IF ( HASONEVALUE ( Series[SeriesId] ), SUM ( Prices[Value] ) )
+		formatString: #,0.00;−#,0.00
+		displayFolder: Charts
+		lineageTag: fb255502-2cbc-4284-93d4-67768b76e8ff
+
+	/// Daily price limited to the window picked in the Chart Range slicer (default 1Y)
+	measure 'Chart Price' =
+			VAR _days = SELECTEDVALUE ( 'Chart Range'[Days], 366 )
+			VAR _maxAll = CALCULATE ( MAX ( Prices[Date] ), ALL ( Prices ) )
+			VAR _cur = MAX ( Dates[Date] )
+			RETURN
+			    IF ( _cur > _maxAll - _days, [Daily Price] )
+		formatString: #,0.00;−#,0.00
+		displayFolder: Charts
+		lineageTag: f9531c49-6486-44ac-8d2d-b88ad5bef627
+
+	measure 'Latest Data Date' = CALCULATE ( MAX ( Prices[Date] ), ALL ( Prices ) )
+		formatString: d mmm yyyy
+		displayFolder: Status
+		lineageTag: 8d72752b-26f6-4438-84c3-6825ec865b41
+
+	measure 'Header Status' =
+			VAR _d = [Latest Data Date]
+			RETURN
+			    IF (
+			        ISBLANK ( _d ),
+			        "No data yet - refresh to load EIA prices",
+			        "Latest EIA data: " & FORMAT ( _d, "d mmm yyyy" ) & "  |  Source: U.S. Energy Information Administration"
+			    )
+		displayFolder: Status
+		lineageTag: 0e5ba56c-73e3-4b73-b8a1-94c419e6376d
+
+	/// Ticker strip: daily move with arrow, plus percent for outright prices
+	measure 'Ticker Move' =
+			VAR _c = [Change]
+			VAR _p = [Change %]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _c ),
+			        IF ( _c > 0, "▲ ", IF ( _c < 0, "▼ ", "" ) ) & FORMAT ( ABS ( _c ), "0.00" )
+			            & IF ( ISBLANK ( _p ), "", "    " & FORMAT ( _p, "+0.0%;−0.0%;0.0%" ) )
+			    )
+		displayFolder: Display
+		lineageTag: 3b1234ae-5c52-4662-906c-a31ab2736364
+
+	/// Ticker strip: 1-month move (percent for prices, dollars for spreads)
+	measure 'Ticker 1M' =
+			VAR _a = [Change 1M]
+			VAR _p = [Change 1M %]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _a ),
+			        "1M  " & IF ( ISBLANK ( _p ), FORMAT ( _a, "+#,0.00;−#,0.00;0.00" ), FORMAT ( _p, "+0.0%;−0.0%;0.0%" ) )
+			    )
+		displayFolder: Display
+		lineageTag: 0fa3b74e-c28c-4df5-98d2-e0b409f1945f
+
+	/// Ticker strip: 52-week range
+	measure 'Ticker 52W' =
+			VAR _lo = [52W Low]
+			VAR _hi = [52W High]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _hi ),
+			        "52W  " & FORMAT ( _lo, "#,0.00;−#,0.00" ) & " – " & FORMAT ( _hi, "#,0.00;−#,0.00" )
+			    )
+		displayFolder: Display
+		lineageTag: 3daf3cf2-fd28-4fb8-ad27-0bdac0616d79
+
+	/// Time of the last successful data refresh, in UTC
+	measure 'Last Refresh Text' =
+			VAR _t = MAX ( 'Refresh Info'[RefreshedUTC] )
+			RETURN
+			    IF ( ISBLANK ( _t ), "Refreshed daily", "Refreshed " & FORMAT ( _t, "d mmm, hh:nn" ) & " UTC" )
+		displayFolder: Status
+		lineageTag: 8c568efd-8b7c-4263-b099-d199526c20b5
+
+	/// Spread rows on price boards use secondary text
+	measure 'Instrument Color' =
+			IF (
+			    SELECTEDVALUE ( Series[Kind] ) = "Spread" && SELECTEDVALUE ( Series[Group] ) <> "Cracks vs Brent",
+			    "#9AABBD",
+			    "#E6ECF2"
+			)
+		displayFolder: Formatting
+		lineageTag: faa18a55-9c49-4a7c-b946-76c4694ab356
+
+	column '_Hidden'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: daaa683b-cd9f-4e9e-981c-c9b91bff4734
+		summarizeBy: none
+		sourceColumn: _Hidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [_Hidden = Int64.Type], {{1}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "detail",
+  "displayName": "Instruments",
+  "displayOption": "FitToWidth",
+  "height": 810,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#0E141B'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#0E141B'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "detailTable",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailTable",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailTable",
+      "target": "detailChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailTable",
+      "target": "detailRange",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailTable",
+      "target": "instrumentSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailChart",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailChart",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailChart",
+      "target": "detailRange",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailChart",
+      "target": "instrumentSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "detailChart",
+      "target": "detailTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "instrumentSlicer",
+      "target": "detailTable",
+      "type": "NoFilter"
+    }
+  ]
+}

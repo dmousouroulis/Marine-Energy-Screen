@@ -1,0 +1,70 @@
+table Dates
+	lineageTag: 6de1fb2e-16d7-4dbb-9369-d2bed725e0c9
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: d mmm yyyy
+		lineageTag: ba299456-01d9-4109-ba47-bd48ecdcbc31
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 18679a13-ab17-4489-9c64-17e2b82b8905
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 25d27245-70a0-48e8-a2b2-aa9494750e48
+		summarizeBy: none
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: fff8ce15-6ba0-40cf-9729-8745a5bf1326
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 217b974c-140f-40e6-af08-9c52fe21d91e
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dates = m
+		mode: import
+		source =
+				let
+				    EndDate = Date.From(DateTime.LocalNow()),
+				    StartDate = Date.AddDays(EndDate, -HistoryDays - 7),
+				    Days = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    Base = Table.FromList(Days, Splitter.SplitByNothing(), type table [Date = date]),
+				    AddYear = Table.AddColumn(Base, "Year", each Date.Year([Date]), Int64.Type),
+				    AddMonthNo = Table.AddColumn(AddYear, "Month Number", each Date.Month([Date]), Int64.Type),
+				    AddMonth = Table.AddColumn(AddMonthNo, "Month", each Date.ToText([Date], [Format = "MMM yyyy", Culture = "en-US"]), type text),
+				    AddYearMonth = Table.AddColumn(AddMonth, "YearMonth", each Date.Year([Date]) * 100 + Date.Month([Date]), Int64.Type)
+				in
+				    AddYearMonth
+
+	annotation PBI_ResultType = Table

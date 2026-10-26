@@ -1,0 +1,131 @@
+table Prices
+	lineageTag: 87b2446e-656f-4281-b1de-63e0d9fc412a
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 056353e7-2a59-4eea-8780-a8ceb0b7ac83
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SeriesId
+		dataType: string
+		isHidden
+		lineageTag: 42956498-ee9f-4189-b6a1-71129696de57
+		summarizeBy: none
+		sourceColumn: SeriesId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: a64abd3e-59bb-41c0-9dd2-14255c6bc63f
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Prices = m
+		mode: import
+		source =
+				let
+				    // ---- Series configuration (kept inside this query so the refresh never combines queries with a web source)
+				    // Route: EIA API v2 route, or "derived" = LegA minus LegB (both already in $/bbl). Factor converts $/gal to $/bbl.
+				    Config = #table(
+				        type table [SeriesId = text, Route = text, Factor = number, LegA = nullable text, LegB = nullable text],
+				        {
+				            {"RBRTE", "petroleum/pri/spt", 1, null, null},
+				            {"RWTC", "petroleum/pri/spt", 1, null, null},
+				            {"SPR_BRENT_WTI", "derived", 1, "RBRTE", "RWTC"},
+				            {"EER_EPD2DXL0_PF4_Y35NY_DPG", "petroleum/pri/spt", 42, null, null},
+				            {"EER_EPD2DXL0_PF4_RGC_DPG", "petroleum/pri/spt", 42, null, null},
+				            {"EER_EPD2F_PF4_Y35NY_DPG", "petroleum/pri/spt", 42, null, null},
+				            {"EER_EPJK_PF4_RGC_DPG", "petroleum/pri/spt", 42, null, null},
+				            {"EER_EPMRU_PF4_Y35NY_DPG", "petroleum/pri/spt", 42, null, null},
+				            {"EER_EPMRU_PF4_RGC_DPG", "petroleum/pri/spt", 42, null, null},
+				            {"EER_EPLLPA_PF4_Y44MB_DPG", "petroleum/pri/spt", 42, null, null},
+				            {"RNGWHHD", "natural-gas/pri/fut", 1, null, null},
+				            {"CRK_ULSD_NYH", "derived", 1, "EER_EPD2DXL0_PF4_Y35NY_DPG", "RBRTE"},
+				            {"CRK_ULSD_USGC", "derived", 1, "EER_EPD2DXL0_PF4_RGC_DPG", "RBRTE"},
+				            {"CRK_JET_USGC", "derived", 1, "EER_EPJK_PF4_RGC_DPG", "RBRTE"},
+				            {"CRK_GASO_NYH", "derived", 1, "EER_EPMRU_PF4_Y35NY_DPG", "RBRTE"}
+				        }
+				    ),
+				    // ---- EIA API v2 fetch with paging. The key comes from the EiaApiKey parameter (set at deploy time or in the Service).
+				    PageSize = 5000,
+				    StartDate = Date.ToText(Date.AddDays(Date.From(DateTime.LocalNow()), -HistoryDays), [Format = "yyyy-MM-dd", Culture = "en-US"]),
+				    GetPage = (route as text, ids as list, offset as number) as record =>
+				        let
+				            Response = Web.Contents(
+				                "https://api.eia.gov",
+				                [
+				                    RelativePath = "v2/" & route & "/data/",
+				                    Query = [
+				                        api_key = EiaApiKey,
+				                        frequency = "daily",
+				                        #"data[0]" = "value",
+				                        #"facets[series][]" = ids,
+				                        start = StartDate,
+				                        #"sort[0][column]" = "period",
+				                        #"sort[0][direction]" = "asc",
+				                        offset = Text.From(offset),
+				                        length = Text.From(PageSize)
+				                    ]
+				                ]
+				            ),
+				            Body = Json.Document(Response)
+				        in
+				            Body[response],
+				    FetchRoute = (route as text) as list =>
+				        let
+				            Ids = Table.SelectRows(Config, each [Route] = route)[SeriesId],
+				            First = GetPage(route, Ids, 0),
+				            FirstData = Record.FieldOrDefault(First, "data", {}),
+				            Total = try Number.From(First[total]) otherwise List.Count(FirstData),
+				            Offsets = if Total <= PageSize then {} else List.Numbers(PageSize, Number.RoundUp(Total / PageSize) - 1, PageSize),
+				            Rest = List.Transform(Offsets, (o) => Record.FieldOrDefault(GetPage(route, Ids, o), "data", {}))
+				        in
+				            List.Buffer(List.Combine({FirstData} & Rest)),
+				    PetroRows = FetchRoute("petroleum/pri/spt"),
+				    // Henry Hub sits on a different EIA route; if it is ever unavailable the rest of the screen still refreshes
+				    GasRows = try FetchRoute("natural-gas/pri/fut") otherwise {},
+				    Rows = List.Transform(PetroRows & GasRows, each {Record.FieldOrDefault(_, "period", null), Record.FieldOrDefault(_, "series", null), Record.FieldOrDefault(_, "value", null)}),
+				    Raw = Table.FromRows(Rows, {"Date", "SeriesId", "Value"}),
+				    Typed = Table.TransformColumns(Raw, {
+				        {"Date", each try Date.FromText(Text.From(_)) otherwise null, type nullable date},
+				        {"SeriesId", each Text.From(_), type text},
+				        {"Value", each try Number.From(_, "en-US") otherwise null, type nullable number}
+				    }),
+				    Clean = Table.Distinct(Table.SelectRows(Typed, each [Date] <> null and [Value] <> null), {"Date", "SeriesId"}),
+				    // ---- Convert products from $/gal to $/bbl
+				    Joined = Table.NestedJoin(Clean, {"SeriesId"}, Table.SelectColumns(Config, {"SeriesId", "Factor"}), {"SeriesId"}, "Cfg", JoinKind.LeftOuter),
+				    Expanded = Table.ExpandTableColumn(Joined, "Cfg", {"Factor"}),
+				    Converted = Table.AddColumn(Expanded, "Price", each [Value] * (if [Factor] = null then 1 else [Factor]), type number),
+				    Base = Table.RenameColumns(Table.SelectColumns(Converted, {"Date", "SeriesId", "Price"}), {{"Price", "Value"}}),
+				    // ---- Spreads and cracks (LegA minus LegB, matched on date)
+				    Defs = Table.SelectRows(Config, each [Route] = "derived"),
+				    Legs = List.Distinct(Defs[LegA] & Defs[LegB]),
+				    Wide = Table.Pivot(Table.SelectRows(Base, each List.Contains(Legs, [SeriesId])), Legs, "SeriesId", "Value", List.Sum),
+				    MakeDerived = (id as text, a as text, b as text) as table =>
+				        let
+				            WithValue = Table.AddColumn(Wide, "Value", (r) =>
+				                let x = Record.Field(r, a), y = Record.Field(r, b)
+				                in if x = null or y = null then null else x - y, type nullable number),
+				            Kept = Table.SelectRows(WithValue, each [Value] <> null),
+				            Tagged = Table.AddColumn(Table.SelectColumns(Kept, {"Date", "Value"}), "SeriesId", each id, type text)
+				        in
+				            Table.SelectColumns(Tagged, {"Date", "SeriesId", "Value"}),
+				    Derived = Table.Combine(List.Transform(Table.ToRecords(Defs), (d) => MakeDerived(d[SeriesId], d[LegA], d[LegB]))),
+				    Combined = Table.Combine({Base, Derived}),
+				    Result = Table.TransformColumnTypes(Combined, {{"Date", type date}, {"SeriesId", type text}, {"Value", type number}})
+				in
+				    Result
+
+	annotation PBI_ResultType = Table

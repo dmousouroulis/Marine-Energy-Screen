@@ -1,0 +1,7 @@
+relationship 917c7e4d-1ad3-4c19-8a3e-8385bf43eee7
+	fromColumn: Prices.Date
+	toColumn: Dates.Date
+
+relationship 9da536ac-cc63-4d9b-b1ce-538ecf4db1fa
+	fromColumn: Prices.SeriesId
+	toColumn: Series.SeriesId

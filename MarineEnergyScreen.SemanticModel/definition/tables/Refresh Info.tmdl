@@ -1,0 +1,24 @@
+table 'Refresh Info'
+	lineageTag: b422322c-3dfd-4b4a-9ae2-c28dbb0ba5f4
+	isHidden
+
+	column RefreshedUTC
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: f110d22f-159b-4a1b-9e41-b86108690b40
+		summarizeBy: none
+		sourceColumn: RefreshedUTC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Refresh Info' = m
+		mode: import
+		source =
+				let
+				    // Time of the last successful refresh (UTC). Display only; not used by any calculation.
+				    Source = #table(type table [RefreshedUTC = datetime], {{DateTimeZone.RemoveZone(DateTimeZone.UtcNow())}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

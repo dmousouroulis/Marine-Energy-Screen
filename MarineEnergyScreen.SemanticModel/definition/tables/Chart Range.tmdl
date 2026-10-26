@@ -1,0 +1,50 @@
+table 'Chart Range'
+	lineageTag: f7c6d9d2-fcb0-428d-985f-ffe350faeacf
+
+	column Range
+		dataType: string
+		lineageTag: ba1a1859-1934-4d4b-8871-e63d7f8c56c6
+		summarizeBy: none
+		sourceColumn: Range
+		sortByColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Days
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 749359c6-0bdc-422c-8823-42c41894b08e
+		summarizeBy: none
+		sourceColumn: Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 040c8a5a-c83c-4d5b-9c09-661b6d950a07
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Chart Range' = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Range = text, Days = Int64.Type, Order = Int64.Type],
+				        {
+				            {"1M", 31, 1},
+				            {"3M", 92, 2},
+				            {"6M", 183, 3},
+				            {"1Y", 366, 4},
+				            {"2Y", 731, 5}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

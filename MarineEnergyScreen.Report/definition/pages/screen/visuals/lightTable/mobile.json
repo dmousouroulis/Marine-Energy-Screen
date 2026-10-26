@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.5.0/schema.json",
+  "position": {
+    "x": 8,
+    "y": 874,
+    "z": 61000,
+    "height": 178,
+    "width": 304,
+    "tabOrder": 61000
+  },
+  "objects": {
+    "columnWidth": [
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "126D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Series.Instrument"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "54D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Price"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "50D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Change"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "52D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Change %"
+        }
+      }
+    ]
+  }
+}

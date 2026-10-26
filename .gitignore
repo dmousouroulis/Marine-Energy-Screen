@@ -1,0 +1,12 @@
+# Power BI Desktop local files
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+*.pbix.bak
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store

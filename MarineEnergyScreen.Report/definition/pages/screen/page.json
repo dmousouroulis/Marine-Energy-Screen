@@ -1,0 +1,1200 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "screen",
+  "displayName": "Overview",
+  "displayOption": "FitToWidth",
+  "height": 810,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#0E141B'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#0E141B'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "crudeTable",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickLast0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickMove0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickM10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickRange0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickLast1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickMove1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickM11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickRange1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickLast2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickMove2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickM12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickRange2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickLast3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickMove3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickM13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickRange3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickLast4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickMove4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickM14",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickRange4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickLast5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickMove5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickM15",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "tickRange5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "distTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "lightTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "crackTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "rangeSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "crudeLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "crudeLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "crudeChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "cracksLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "cracksLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "cracksLegVal2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "cracksLegVal3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeTable",
+      "target": "cracksChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickLast0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickMove0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickM10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickRange0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickLast1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickMove1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickM11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickRange1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickLast2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickMove2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickM12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickRange2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickLast3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickMove3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickM13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickRange3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickLast4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickMove4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickM14",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickRange4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickLast5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickMove5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickM15",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "tickRange5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "crudeTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "lightTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "crackTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "rangeSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "crudeLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "crudeLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "crudeChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "cracksLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "cracksLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "cracksLegVal2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "cracksLegVal3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "distTable",
+      "target": "cracksChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickLast0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickMove0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickM10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickRange0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickLast1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickMove1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickM11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickRange1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickLast2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickMove2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickM12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickRange2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickLast3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickMove3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickM13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickRange3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickLast4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickMove4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickM14",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickRange4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickLast5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickMove5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickM15",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "tickRange5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "crudeTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "distTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "crackTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "rangeSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "crudeLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "crudeLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "crudeChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "cracksLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "cracksLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "cracksLegVal2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "cracksLegVal3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lightTable",
+      "target": "cracksChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickLast0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickMove0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickM10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickRange0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickLast1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickMove1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickM11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickRange1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickLast2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickMove2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickM12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickRange2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickLast3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickMove3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickM13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickRange3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickLast4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickMove4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickM14",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickRange4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickLast5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickMove5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickM15",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "tickRange5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "crudeTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "distTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "lightTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "rangeSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "crudeLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "crudeLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "crudeChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "cracksLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "cracksLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "cracksLegVal2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "cracksLegVal3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crackTable",
+      "target": "cracksChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickLast0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickMove0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickM10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickRange0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickLast1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickMove1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickM11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickRange1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickLast2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickMove2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickM12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickRange2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickLast3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickMove3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickM13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickRange3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickLast4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickMove4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickM14",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickRange4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickLast5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickMove5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickM15",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "tickRange5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "crudeTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "distTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "lightTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "crackTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "rangeSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "crudeLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "crudeLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "cracksLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "cracksLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "cracksLegVal2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "cracksLegVal3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "crudeChart",
+      "target": "cracksChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "printDate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "refreshNote",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickLast0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickMove0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickM10",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickRange0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickLast1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickMove1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickM11",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickRange1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickLast2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickMove2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickM12",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickRange2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickLast3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickMove3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickM13",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickRange3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickLast4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickMove4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickM14",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickRange4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickLast5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickMove5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickM15",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "tickRange5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "crudeTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "distTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "lightTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "crackTable",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "rangeSlicer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "crudeLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "crudeLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "crudeChart",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "cracksLegVal0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "cracksLegVal1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "cracksLegVal2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "cracksChart",
+      "target": "cracksLegVal3",
+      "type": "NoFilter"
+    }
+  ]
+}

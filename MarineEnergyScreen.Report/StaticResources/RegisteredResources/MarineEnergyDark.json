@@ -1,0 +1,136 @@
+{
+  "name": "Marine Energy Night",
+  "dataColors": [
+    "#F2A541",
+    "#6CB4FF",
+    "#B69CFF",
+    "#A9B8C8",
+    "#4FD1C5",
+    "#F28DB2",
+    "#C9A26B",
+    "#7FB77E",
+    "#E8D26F",
+    "#8FA8FF",
+    "#D69CFF",
+    "#9FD8E8",
+    "#F2B88B",
+    "#B8C4D0",
+    "#6FD6A8"
+  ],
+  "background": "#131B24",
+  "foreground": "#E6ECF2",
+  "tableAccent": "#F2A541",
+  "good": "#3DCB95",
+  "neutral": "#8094A8",
+  "bad": "#FF7A7A",
+  "textClasses": {
+    "callout": {
+      "fontSize": 24,
+      "fontFace": "DIN, 'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+      "color": "#E6ECF2"
+    },
+    "title": {
+      "fontSize": 13,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#E6ECF2"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#E6ECF2"
+    },
+    "label": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI",
+      "color": "#8094A8"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false,
+            "background": {
+              "solid": {
+                "color": "#131B24"
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": "#9AABBD"
+              }
+            }
+          }
+        ],
+        "visualTooltip": [
+          {
+            "background": {
+              "solid": {
+                "color": "#18222D"
+              }
+            },
+            "titleFontColor": {
+              "solid": {
+                "color": "#9AABBD"
+              }
+            },
+            "valueFontColor": {
+              "solid": {
+                "color": "#E6ECF2"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0E141B"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0E141B"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "total": [
+          {
+            "totals": false
+          }
+        ]
+      }
+    }
+  }
+}

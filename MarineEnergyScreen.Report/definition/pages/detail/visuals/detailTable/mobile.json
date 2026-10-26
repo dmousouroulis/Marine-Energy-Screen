@@ -1,0 +1,155 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.5.0/schema.json",
+  "position": {
+    "x": 4,
+    "y": 838,
+    "z": 22000,
+    "height": 504,
+    "width": 312,
+    "tabOrder": 22000
+  },
+  "objects": {
+    "columnWidth": [
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "122D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Series.Instrument"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "62D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Price"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "56D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Change"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "60D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Change %"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "62D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Change 1M"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "58D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.Change 1M %"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "66D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.52W Low"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "68D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.52W High"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "60D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Series.Unit"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "92D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "_Measures.As Of"
+        }
+      }
+    ]
+  }
+}
